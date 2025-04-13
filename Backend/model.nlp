@@ -1,0 +1,236 @@
+{
+  "settings": {
+    "languages": [
+      "en"
+    ],
+    "forceNER": true,
+    "tag": "nlp",
+    "threshold": 0.5,
+    "autoLoad": true,
+    "autoSave": true,
+    "modelFileName": "model.nlp",
+    "executeActionsBeforeAnswers": false,
+    "calculateSentiment": true
+  },
+  "nluManager": {
+    "settings": {
+      "tag": "nlu-manager"
+    },
+    "locales": [
+      "en"
+    ],
+    "languageNames": {},
+    "domainManagers": {
+      "en": {
+        "settings": {
+          "locale": "en",
+          "trainByDomain": false,
+          "tag": "domain-manager-en",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {
+          "hello": {
+            "intent": "greet",
+            "domain": "default"
+          },
+          "hi,there": {
+            "intent": "greet",
+            "domain": "default"
+          },
+          "are,avail,when,you": {
+            "intent": "ask_for_availability",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "greet": "default",
+          "ask_for_availability": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "hello",
+            "intent": "greet"
+          },
+          {
+            "domain": "default",
+            "utterance": "hi there",
+            "intent": "greet"
+          },
+          {
+            "domain": "default",
+            "utterance": "when are you available",
+            "intent": "ask_for_availability"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "en",
+              "tag": "nlu-en",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "hello": 1,
+              "hi": 1,
+              "there": 1,
+              "when": 1,
+              "are": 1,
+              "you": 1,
+              "avail": 1
+            },
+            "intents": {
+              "greet": 1,
+              "ask_for_availability": 1
+            },
+            "intentFeatures": {
+              "greet": {
+                "hello": 1,
+                "hi": 1,
+                "there": 1
+              },
+              "ask_for_availability": {
+                "when": 1,
+                "are": 1,
+                "you": 1,
+                "avail": 1
+              }
+            },
+            "featuresToIntent": {
+              "hello": [
+                "greet"
+              ],
+              "hi": [
+                "greet"
+              ],
+              "there": [
+                "greet"
+              ],
+              "when": [
+                "ask_for_availability"
+              ],
+              "are": [
+                "ask_for_availability"
+              ],
+              "you": [
+                "ask_for_availability"
+              ],
+              "avail": [
+                "ask_for_availability"
+              ]
+            },
+            "neuralNetwork": {
+              "settings": {
+                "locale": "en",
+                "tag": "nlu-en",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              },
+              "features": [
+                "hello",
+                "hi",
+                "there",
+                "when",
+                "are",
+                "you",
+                "avail"
+              ],
+              "intents": [
+                "greet",
+                "ask_for_availability"
+              ],
+              "perceptrons": [
+                [
+                  8.418081283569336,
+                  4.331043243408203,
+                  4.331043243408203,
+                  -1.4155983924865723,
+                  -1.4155983924865723,
+                  -1.4155983924865723,
+                  -1.4155983924865723,
+                  5.6732190024775555
+                ],
+                [
+                  -0.9229390025138855,
+                  -0.5169195532798767,
+                  -0.5169195532798767,
+                  3.335470199584961,
+                  3.335470199584961,
+                  3.335470199584961,
+                  3.335470199584961,
+                  0.9423333985364244
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "intentDomains": {},
+    "extraSentences": [
+      [
+        "en",
+        "hello"
+      ],
+      [
+        "en",
+        "hi there"
+      ],
+      [
+        "en",
+        "when are you available"
+      ]
+    ]
+  },
+  "ner": {
+    "settings": {
+      "tag": "ner",
+      "entityPreffix": "%",
+      "entitySuffix": "%"
+    },
+    "rules": {}
+  },
+  "nlgManager": {
+    "settings": {
+      "tag": "nlg-manager"
+    },
+    "responses": {
+      "en": {
+        "greet": [
+          {
+            "answer": "Hello! How can I assist you today?"
+          }
+        ],
+        "ask_for_availability": [
+          {
+            "answer": "When are you available for the interview?"
+          }
+        ]
+      }
+    }
+  },
+  "actionManager": {
+    "settings": {
+      "tag": "action-manager"
+    },
+    "actions": {}
+  },
+  "slotManager": {}
+}
